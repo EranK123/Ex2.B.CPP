@@ -1,23 +1,13 @@
-#include "Notebook.hpp"
 #include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
+#include "Page.hpp"
 using namespace std;  
 using namespace ariel;
 using ariel::Direction;
-
-class Page{
-    private:
-    unordered_map<int, string> page; //row, text of row
-    public:
-    void write(int row, int col, Direction dir, std::string const & s);
-    std::string read(int row, int col, Direction dir, int len);
-    void erase(int row, int col, Direction dir, int len);
-    void show();
-    
-};
 
 
 string init_string(unordered_map<int, string> page, int row){
@@ -30,11 +20,7 @@ string init_string(unordered_map<int, string> page, int row){
 }
 
 void Page::write(int row, int col, Direction dir, std::string const & s){
-    if(row < 0 || col < 0){
-        throw std::invalid_argument("Negative numbers"); 
-    }
     page[row] = init_string(page, row);
-    int temp = s.length();
     if(dir == Direction::Horizontal){
         for(int i = 0; i < s.length(); i++){
             if(page[row].at(col) == '~'){
@@ -42,7 +28,10 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
             }
             page[row].insert(col, 1, s[i]);
             col++;
-            temp--;
+            if(col > 100){
+                throw std::invalid_argument("Reached the limit of th row"); 
+            }
+
         }
     }else{
          for(int i = 0; i < s.length(); i++){
@@ -57,14 +46,14 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
 }
 
 std::string Page::read(int row, int col, Direction dir, int len){
-     if(row < 0 || col < 0){
-        throw std::invalid_argument("Negative numbers"); 
-    }
     string s;
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
             s += page[row].at(col);
             col++;
+              if(col > 100){
+                throw std::invalid_argument("Reached the limit of th row"); 
+            }
         }
     }else{
         for(int i = 0; i < len; i++){
@@ -76,9 +65,6 @@ return s;
 }
 
 void Page::erase(int row, int col, Direction dir, int len){
-     if(row < 0 || col < 0){
-        throw std::invalid_argument("Negative numbers"); 
-    }
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
             page[row].replace(col, 1, "~");
@@ -111,7 +97,8 @@ int main(){
     Page p;
     p.write(0,3,Direction::Horizontal, "HEY");
     p.write(5,3,Direction::Vertical, "HEY");
-    p.erase(5,3,Direction::Vertical, 2);
+    // p.erase(5,3,Direction::Vertical, 2);
+    p.write(12,26,Direction::Horizontal, "HEY");
     cout << p.read(0,3,Direction::Horizontal, 3) << endl;
     p.show();
 
