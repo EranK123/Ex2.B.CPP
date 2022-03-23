@@ -93,15 +93,15 @@ void Page::show(){
 }
 
 
-int main(){
-    Page p;
-    p.write(0,3,Direction::Horizontal, "HEY");
-    p.write(5,3,Direction::Vertical, "HEY");
-    // p.erase(5,3,Direction::Vertical, 2);
-    p.write(12,26,Direction::Horizontal, "HEY");
-    cout << p.read(0,3,Direction::Horizontal, 3) << endl;
-    p.show();
+// int main(){
+//     Page p;
+//     p.write(0,3,Direction::Horizontal, "HEY");
+//     p.write(5,3,Direction::Vertical, "HEY");
+//     // p.erase(5,3,Direction::Vertical, 2);
+//     p.write(12,26,Direction::Horizontal, "HEY");
+//     cout << p.read(0,3,Direction::Horizontal, 3) << endl;
+//     p.show();
 
 
-    return 0;
-}
+//     return 0;
+// }
