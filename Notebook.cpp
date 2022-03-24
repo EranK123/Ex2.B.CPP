@@ -2,7 +2,7 @@
 #include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
-#include "Page.hpp"
+#include "Page.cpp"
 using namespace std;  
 using namespace ariel;
 using ariel::Direction;
@@ -41,7 +41,10 @@ void Notebook::show(int page){
 int main(){
     Notebook n;
     n.write(0, 0, 3, Direction::Horizontal, "HEY");
-   cout << n.read(0, 0, 3, Direction::Horizontal, 3) << endl;
+    n.write(0, 4, 3, Direction::Horizontal, "HEY");
+    n.write(0, 16, 25, Direction::Horizontal, "HEY");
+//    cout << n.read(0, 0, 3, Direction::Horizontal, 3) << endl;
+   n.show(0);
 
 }
 
