@@ -12,7 +12,7 @@ using ariel::Direction;
 // }
 
 void Notebook::write(int page, int row, int col, Direction dir, string const & s){
-     if(page < 0 || row < 0 || col < 0 || col > 100 || notebook.count(page) == 0){
+     if(page < 0 || row < 0 || col < 0 || col > 100){
         throw std::invalid_argument("Bad Inputs"); 
     }
     notebook[page].write(row, col, dir, s);
@@ -50,7 +50,7 @@ int main(){
     n.write(1, 16, 25, Direction::Horizontal, "HEY");
    n.show(0);
    n.show(1);
-   n.show(2);
+//    n.show(2);
 
 }
 
