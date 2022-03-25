@@ -65,6 +65,7 @@ return s;
 }
 
 void Page::erase(int row, int col, Direction dir, int len){
+    page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
             page[row].replace(col, 1, "~");
@@ -74,7 +75,8 @@ void Page::erase(int row, int col, Direction dir, int len){
     }else{
         for(int i = 0; i < len; i++){
             page[row].replace(col, 1, "~");
-            row++;   
+            row++;
+            page[row] = init_string(page, row);   
     }
 }
 }
@@ -97,11 +99,20 @@ void Page::show(){
 //     Page p;
 //     p.write(0,3,Direction::Horizontal, "HEY");
 //     p.write(5,3,Direction::Vertical, "HEY");
-//     // p.erase(5,3,Direction::Vertical, 2);
+//     p.erase(13,3,Direction::Horizontal, 2);
 //     p.write(12,26,Direction::Horizontal, "HEY");
 //     cout << p.read(0,3,Direction::Horizontal, 3) << endl;
 //     p.show();
 
 
 //     return 0;
+
+//     Page n;
+//     n.write(0, 3, Direction::Horizontal, "HEY");
+//     n.write(4, 3, Direction::Horizontal, "HEY");
+//     n.write(16, 25, Direction::Horizontal, "HEY");
+//     n.write(18, 25, Direction::Vertical, "HEY");
+//     n.erase(15, 24, Direction::Vertical, 5);
+//    n.show();
+
 // }
