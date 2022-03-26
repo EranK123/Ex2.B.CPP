@@ -5,7 +5,7 @@
 namespace ariel{
 class Notebook{
 private:
-unordered_map<int, Page> notebook;
+static unordered_map<int, Page> notebook;
 public:
     // Notebook();
     static void write(int page, int row, int col, Direction dir, std::string const & s);

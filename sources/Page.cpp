@@ -82,7 +82,7 @@ void Page::erase(int row, int col, Direction dir, int len){
 }
 }
 
-int cmp(pair<int, string> a, pair<int,string> b){
+int cmp(pair<int, string> & a, pair<int,string> b){
     return a.first < b.first;
 }
 

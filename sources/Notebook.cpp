@@ -7,8 +7,6 @@ using namespace std;
 using namespace ariel;
 using ariel::Direction;
 
- const int x = 100;
-
   void Notebook::write(int page, int row, int col, Direction dir, string const & s){
      if(page < 0 || row < 0 || col < 0 || col > x){
         throw std::invalid_argument("Bad Inputs"); 
@@ -39,19 +37,19 @@ void Notebook::show(int page){
 }
 
 int main(){
-//     Notebook n;
-//     n.write(0, 0, 3, Direction::Horizontal, "HEY");
-//     n.write(0, 4, 3, Direction::Horizontal, "HEY");
-//     n.write(0, 16, 25, Direction::Horizontal, "HEY");
-//     n.write(1, 0, 3, Direction::Horizontal, "HEY");
-//     n.write(1, 4, 3, Direction::Horizontal, "HEY");
-//     n.write(1, 16, 25, Direction::Horizontal, "HEY");
-//     n.write(1, 18, 25, Direction::Vertical, "HEY");
-//     n.erase(0, 15, 24, Direction::Vertical, 5);
-//    n.show(0);
-//    n.show(1);
+    Notebook n;
+    n.write(0, 0, 3, Direction::Horizontal, "HEY");
+    n.write(0, 4, 3, Direction::Horizontal, "HEY");
+    n.write(0, 16, 25, Direction::Horizontal, "HEY");
+    n.write(1, 0, 3, Direction::Horizontal, "HEY");
+    n.write(1, 4, 3, Direction::Horizontal, "HEY");
+    n.write(1, 16, 25, Direction::Horizontal, "HEY");
+    n.write(1, 18, 25, Direction::Vertical, "HEY");
+    n.erase(0, 15, 24, Direction::Vertical, 5);
+   n.show(0);
+   n.show(1);
 
-//    n.show(2);
+   n.show(2);
 
 }
 
