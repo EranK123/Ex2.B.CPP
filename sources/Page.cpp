@@ -1,4 +1,4 @@
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -9,10 +9,11 @@ using namespace std;
 using namespace ariel;
 using ariel::Direction;
 
+const int x = 100;
 
 string init_string(unordered_map<int, string> page, int row){
     if(page.count(row) == 0){
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < x; i++){
             page[row].append("_");
         }
     }
@@ -28,7 +29,7 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
             }
             page[row].insert(col, 1, s[i]);
             col++;
-            if(col > 100){
+            if(col > x){
                 throw std::invalid_argument("Reached the limit of th row"); 
             }
 
@@ -51,7 +52,7 @@ std::string Page::read(int row, int col, Direction dir, int len){
         for(int i = 0; i < len; i++){
             s += page[row].at(col);
             col++;
-              if(col > 100){
+              if(col > x){
                 throw std::invalid_argument("Reached the limit of th row"); 
             }
         }

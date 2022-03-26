@@ -1,5 +1,5 @@
 #pragma once
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
 #include <iostream>
 #include <unordered_map>
 using namespace std;  
