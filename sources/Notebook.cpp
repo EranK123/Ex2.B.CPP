@@ -29,7 +29,7 @@ void Notebook::erase(int page, int row, int col, Direction dir, int len){
 }
 
 void Notebook::show(int page){
-    if(page < 0 || notebook.count(page) == 0){
+    if(page < 0){
         throw std::invalid_argument("These numbers cannot be applied"); 
     }
     cout << "Page: " << page << endl;
