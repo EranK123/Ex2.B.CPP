@@ -1,4 +1,4 @@
-#include "Direction.hpp"
+#include "sources/Direction.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -24,8 +24,8 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
         for(int i = 0; i < s.length(); i++){
-            if(page[row].at(col) == '~'){
-                throw std::invalid_argument("Cant write on deleted text"); 
+            if(page[row].at(col) == '~' || page[row].at(col) != '_'){
+                throw std::invalid_argument("Cant write here"); 
             }
             page[row].insert(col, 1, s[i]);
             col++;
@@ -36,8 +36,8 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
         }
     }else{
          for(int i = 0; i < s.length(); i++){
-              if(page[row].at(col) == '~'){
-                throw std::invalid_argument("Cant write on deleted text"); 
+              if(page[row].at(col) == '~' || page[row].at(col) != '_'){
+                throw std::invalid_argument("Cant write here"); 
             }
              page[row].insert(col, 1, s[i]);
              row++;
@@ -69,6 +69,9 @@ void Page::erase(int row, int col, Direction dir, int len){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
+            if(col >= 100){
+               throw std::invalid_argument("Cant erase here"); 
+            }
             page[row].replace(col, 1, "~");
             col++;
 
@@ -83,7 +86,10 @@ void Page::erase(int row, int col, Direction dir, int len){
 }
 
 int cmp(pair<int, string> & a, pair<int,string> & b){
-    return a.first < b.first;
+    if (a.first < b.first){
+        return 1;
+    }
+    return 0;
 }
 
 void Page::show(){
