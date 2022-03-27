@@ -25,6 +25,9 @@ string init_string(unordered_map<int, string> page, int row){
 void Page::write(int row, int col, Direction dir, std::string const & s){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
+        if(s.length() > x){
+            throw std::invalid_argument("Cant write here");
+        }
         for(unsigned long i = 0; i < s.length(); i++){
             if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_' || s[i] == '~' || s[i] < y || s[i] > z){
                 throw std::invalid_argument("Cant write here"); 
@@ -43,8 +46,9 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
             }
             //  page[row].insert((unsigned long)col, 1, s[i]);
             page[row][(unsigned long)col] = s[i];
-             row++;
-             page[row] = init_string(page, row);
+            row++;
+            // cout << "row :" << row << endl;
+            page[row] = init_string(page, row);
          }
     }
 }

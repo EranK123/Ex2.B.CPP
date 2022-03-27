@@ -10,7 +10,7 @@ using ariel::Direction;
     const int x = 100;
 
   void Notebook::write(int page, int row, int col, Direction dir, string const & s){
-     if(page < 0 || row < 0 || col < 0 || col >= x || s == "\n" || s.length() > x){
+     if(page < 0 || row < 0 || col < 0 || col >= x){
         throw std::invalid_argument("Bad Inputs"); 
     }
     notebook[page].write(row, col, dir, s);
