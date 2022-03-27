@@ -1,4 +1,4 @@
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -69,7 +69,7 @@ void Page::erase(int row, int col, Direction dir, int len){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
-            if(col >= 100){
+            if(col >= x){
                throw std::invalid_argument("Cant erase here"); 
             }
             page[row].replace(col, 1, "~");

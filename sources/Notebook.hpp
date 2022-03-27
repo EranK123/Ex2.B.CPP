@@ -1,5 +1,5 @@
 #include <string>
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
 #include "Page.hpp"
 #include <unordered_map>
 namespace ariel{

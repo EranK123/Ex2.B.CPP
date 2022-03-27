@@ -1,5 +1,5 @@
 #include "Notebook.hpp"
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
 #include <iostream>
 #include <stdexcept>
 #include "Page.cpp"
@@ -44,12 +44,11 @@ void Notebook::show(int page){
 //     n.write(1, 0, 3, Direction::Horizontal, "HEY");
 //     n.write(1, 4, 3, Direction::Horizontal, "HEY");
 //     n.write(1, 16, 25, Direction::Horizontal, "HEY");
-//     n.write(1, 18, 25, Direction::Vertical, "HEY");
+//     n.write(1, 19, 25, Direction::Vertical, "HEY");
 //     n.erase(0, 15, 24, Direction::Vertical, 5);
 //    n.show(0);
 //    n.show(1);
-
-//    n.show(2);
+   
 
 // }
 
