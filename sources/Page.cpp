@@ -10,6 +10,8 @@ using namespace ariel;
 using ariel::Direction;
 
 const int x = 100;
+const int y = 32;
+const int z = 126;
 
 string init_string(unordered_map<int, string> page, int row){
     if(page.count(row) == 0){
@@ -24,22 +26,23 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
         for(unsigned long i = 0; i < s.length(); i++){
-            if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_'){
+            if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_' || s[i] == '~' || s[i] < y || s[i] > z){
                 throw std::invalid_argument("Cant write here"); 
             }
-            page[row].insert((unsigned long)col, 1, s[i]);
+            // page[row].insert((unsigned long)col, 1, s[i]);
+            page[row][(unsigned long)col] = s[i];
             col++;
             if(col > x){
-                throw std::invalid_argument("Reached the limit of th row"); 
+                throw std::invalid_argument("Reached the limit of the row"); 
             }
-
         }
     }else{
          for(unsigned long i = 0; i < s.length(); i++){
-              if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_'){
+              if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_' || s[i] == '~' || s[i] < y || s[i] > z){
                 throw std::invalid_argument("Cant write here"); 
             }
-             page[row].insert((unsigned long)col, 1, s[i]);
+            //  page[row].insert((unsigned long)col, 1, s[i]);
+            page[row][(unsigned long)col] = s[i];
              row++;
              page[row] = init_string(page, row);
          }
@@ -48,7 +51,11 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
 
 std::string Page::read(int row, int col, Direction dir, int len){
     string s;
+    page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
+        if(len > x){
+            throw std::invalid_argument("Reached the limit of the row"); 
+        }
         for(int i = 0; i < len; i++){
             s += page[row].at((unsigned long)col);
             col++;
@@ -60,6 +67,7 @@ std::string Page::read(int row, int col, Direction dir, int len){
         for(int i = 0; i < len; i++){
             s += page[row].at((unsigned long)col);
             row++;
+            page[row] = init_string(page, row);
     }
 }
 return s;
