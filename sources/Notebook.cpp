@@ -6,7 +6,7 @@
 using namespace std;  
 using namespace ariel;
 using ariel::Direction;
-
+////
   void Notebook::write(int page, int row, int col, Direction dir, string const & s){
      if(page < 0 || row < 0 || col < 0 || col > x){
         throw std::invalid_argument("Bad Inputs"); 

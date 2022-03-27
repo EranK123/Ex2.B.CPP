@@ -23,11 +23,11 @@ string init_string(unordered_map<int, string> page, int row){
 void Page::write(int row, int col, Direction dir, std::string const & s){
     page[row] = init_string(page, row);
     if(dir == Direction::Horizontal){
-        for(int i = 0; i < s.length(); i++){
-            if(page[row].at(col) == '~' || page[row].at(col) != '_'){
+        for(unsigned long i = 0; i < s.length(); i++){
+            if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_'){
                 throw std::invalid_argument("Cant write here"); 
             }
-            page[row].insert(col, 1, s[i]);
+            page[row].insert((unsigned long)col, 1, s[i]);
             col++;
             if(col > x){
                 throw std::invalid_argument("Reached the limit of th row"); 
@@ -35,11 +35,11 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
 
         }
     }else{
-         for(int i = 0; i < s.length(); i++){
-              if(page[row].at(col) == '~' || page[row].at(col) != '_'){
+         for(unsigned long i = 0; i < s.length(); i++){
+              if(page[row].at((unsigned long)col) == '~' || page[row].at((unsigned long)col) != '_'){
                 throw std::invalid_argument("Cant write here"); 
             }
-             page[row].insert(col, 1, s[i]);
+             page[row].insert((unsigned long)col, 1, s[i]);
              row++;
              page[row] = init_string(page, row);
          }
@@ -50,7 +50,7 @@ std::string Page::read(int row, int col, Direction dir, int len){
     string s;
     if(dir == Direction::Horizontal){
         for(int i = 0; i < len; i++){
-            s += page[row].at(col);
+            s += page[row].at((unsigned long)col);
             col++;
               if(col > x){
                 throw std::invalid_argument("Reached the limit of th row"); 
@@ -58,7 +58,7 @@ std::string Page::read(int row, int col, Direction dir, int len){
         }
     }else{
         for(int i = 0; i < len; i++){
-            s += page[row].at(col);
+            s += page[row].at((unsigned long)col);
             row++;
     }
 }
@@ -72,13 +72,13 @@ void Page::erase(int row, int col, Direction dir, int len){
             if(col >= x){
                throw std::invalid_argument("Cant erase here"); 
             }
-            page[row].replace(col, 1, "~");
+            page[row].replace((unsigned long)col, 1, "~");
             col++;
 
         }
     }else{
         for(int i = 0; i < len; i++){
-            page[row].replace(col, 1, "~");
+            page[row].replace((unsigned long)col, 1, "~");
             row++;
             page[row] = init_string(page, row);   
     }
@@ -95,7 +95,7 @@ int cmp(pair<int, string> & a, pair<int,string> & b){
 void Page::show(){
     vector<pair<int, string> > v(page.begin(), page.end());
     std::sort(v.begin(), v.end(), cmp);
-    for (int i = 0; i < v.size(); i++)
+    for (unsigned long i = 0; i < v.size(); i++)
 {
     cout << v[i].first << " :: " << v[i].second << endl;
 }
