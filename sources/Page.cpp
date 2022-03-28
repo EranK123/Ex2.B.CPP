@@ -47,7 +47,6 @@ void Page::write(int row, int col, Direction dir, std::string const & s){
             //  page[row].insert((unsigned long)col, 1, s[i]);
             page[row][(unsigned long)col] = s[i];
             row++;
-            // cout << "row :" << row << endl;
             page[row] = init_string(page, row);
          }
     }
